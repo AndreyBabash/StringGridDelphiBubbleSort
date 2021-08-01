@@ -1,0 +1,60 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 529
+  ClientWidth = 648
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  DesignerMasterStyle = 0
+  object StringGrid1: TStringGrid
+    CanFocus = True
+    ClipChildren = True
+    Position.X = 40.000000000000000000
+    Position.Y = 32.000000000000000000
+    Size.Width = 553.000000000000000000
+    Size.Height = 369.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    RowCount = 20
+    Viewport.Width = 533.000000000000000000
+    Viewport.Height = 344.000000000000000000
+    object StringColumn1: TStringColumn
+      Header = 'My Column'
+      Size.Width = 169.000000000000000000
+    end
+    object StringColumn2: TStringColumn
+      Header = 'MyColumn 2'
+      Size.Width = 199.000000000000000000
+    end
+  end
+  object Button1: TButton
+    Position.X = 40.000000000000000000
+    Position.Y = 408.000000000000000000
+    Size.Width = 553.000000000000000000
+    Size.Height = 33.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    Text = 'Button1'
+    OnClick = Button1Click
+  end
+  object Button2: TButton
+    Position.X = 40.000000000000000000
+    Position.Y = 448.000000000000000000
+    Size.Width = 553.000000000000000000
+    Size.Height = 33.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    Text = 'Button2'
+    OnClick = Button2Click
+  end
+  object Edit1: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 4
+    Text = '20'
+    Position.X = 40.000000000000000000
+    Position.Y = 488.000000000000000000
+  end
+end
