@@ -11,23 +11,25 @@ uses
 type
   TForm1 = class(TForm)
     StringGrid1: TStringGrid;
-    StringColumn1: TStringColumn;
-    StringColumn2: TStringColumn;
     Button1: TButton;
     Button2: TButton;
     Edit1: TEdit;
+    Button3: TButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure StringGrid1DrawColumnCell(Sender: TObject; const Canvas: TCanvas;
       const Column: TColumn; const Bounds: TRectF; const Row: Integer;
       const Value: TValue; const State: TGridDrawStates);
+    procedure FormDestroy(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
     arr:TArray<Double>;
     elementscol:integer;
+    stringcolumn:TArray<TStringColumn>;
   end;
 
 var
@@ -51,35 +53,65 @@ begin
   sum:=sum+arr[i];
 
   // Сортировка пузырьком
-  for i:=0 to Length(arr)-1 do
+  for i:=1 to Length(arr) do
   begin
     for j:=Length(arr)-1 downto i do
     begin
-      if arr[i-1]>arr[i] then
+      if arr[j-1]>arr[j]
+       then
       begin
-        temp:=arr[i-1];
-        arr[i-1]:=arr[i];
-        arr[i]:=temp;
+        temp:=arr[j-1];
+        arr[j-1]:=arr[j];
+        arr[j]:=temp;
       end;
-
     end;
   end;
 
+  for i:=0 to elementscol-1 do
+  begin
+    StringGrid1.Cells[1,i]:=arr[i].ToString;
+  end;
+
   Form1.Caption:=sum.ToString;
+
   ShowMessage('Результат: '+sum.ToString);
 
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);
+var i:integer;
 begin
-  elementscol:=integer.Parse(Edit1.Text);
-  StringGrid1.RowCount:=elementscol;
+    stringcolumn:=nil;
+    elementscol:=integer.Parse(Edit1.Text);
+    StringGrid1.RowCount:=elementscol;
+    SetLength(stringcolumn,3);
+
+  for i:=0 to Length(stringcolumn)-1 do
+  begin
+     stringcolumn[i]:=TStringColumn.Create(StringGrid1);
+     stringcolumn[i].Parent:=StringGrid1;
+     stringcolumn[i].Visible:=true;
+  end;
+
+end;
+
+procedure TForm1.Button3Click(Sender: TObject);
+var i:integer;
+begin
+for i:=0 to StringGrid1.ColumnCount-1 do
+
+  StringGrid1.Columns[0].Destroy;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
 begin
   elementscol:=integer.Parse(Edit1.Text);
   StringGrid1.RowCount:=elementscol;
+end;
+
+procedure TForm1.FormDestroy(Sender: TObject);
+begin
+  stringcolumn:=nil;
 end;
 
 procedure TForm1.StringGrid1DrawColumnCell(Sender: TObject;

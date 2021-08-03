@@ -58,14 +58,4 @@ object Form1: TForm1
     Size.Height = 22.000000000000000000
     Size.PlatformDefault = False
   end
-  object Button3: TButton
-    Align = Top
-    Position.Y = 457.000000000000000000
-    Size.Width = 648.000000000000000000
-    Size.Height = 40.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 5
-    Text = 'Button3'
-    OnClick = Button3Click
-  end
 end

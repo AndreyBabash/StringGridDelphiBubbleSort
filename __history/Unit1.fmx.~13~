@@ -10,30 +10,28 @@ object Form1: TForm1
   OnCreate = FormCreate
   DesignerMasterStyle = 0
   object StringGrid1: TStringGrid
+    Align = Top
     CanFocus = True
     ClipChildren = True
-    Position.X = 40.000000000000000000
-    Position.Y = 32.000000000000000000
-    Size.Width = 553.000000000000000000
+    Position.Y = 22.000000000000000000
+    Size.Width = 648.000000000000000000
     Size.Height = 369.000000000000000000
     Size.PlatformDefault = False
+    TextSettings.Font.Size = 14.000000000000000000
+    TextSettings.Font.StyleExt = {00070000000000000004000000}
+    TextSettings.FontColor = claBlue
+    StyledSettings = [Family]
     TabOrder = 0
+    RowHeight = 40.000000000000000000
     RowCount = 20
-    Viewport.Width = 533.000000000000000000
+    OnDrawColumnCell = StringGrid1DrawColumnCell
+    Viewport.Width = 644.000000000000000000
     Viewport.Height = 344.000000000000000000
-    object StringColumn1: TStringColumn
-      Header = 'My Column'
-      Size.Width = 169.000000000000000000
-    end
-    object StringColumn2: TStringColumn
-      Header = 'MyColumn 2'
-      Size.Width = 199.000000000000000000
-    end
   end
   object Button1: TButton
-    Position.X = 40.000000000000000000
-    Position.Y = 408.000000000000000000
-    Size.Width = 553.000000000000000000
+    Align = Top
+    Position.Y = 391.000000000000000000
+    Size.Width = 648.000000000000000000
     Size.Height = 33.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 2
@@ -41,18 +39,22 @@ object Form1: TForm1
     OnClick = Button1Click
   end
   object Button2: TButton
-    Position.X = 40.000000000000000000
-    Position.Y = 448.000000000000000000
-    Size.Width = 553.000000000000000000
+    Align = Top
+    Position.Y = 424.000000000000000000
+    Size.Width = 648.000000000000000000
     Size.Height = 33.000000000000000000
     Size.PlatformDefault = False
-    TabOrder = 4
+    TabOrder = 3
     Text = 'Button2'
+    OnClick = Button2Click
   end
   object Edit1: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
-    TabOrder = 5
-    Position.X = 40.000000000000000000
-    Position.Y = 488.000000000000000000
+    Align = Top
+    TabOrder = 4
+    Text = '20'
+    Size.Width = 648.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
   end
 end

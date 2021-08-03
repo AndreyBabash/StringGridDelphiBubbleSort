@@ -11,8 +11,6 @@ uses
 type
   TForm1 = class(TForm)
     StringGrid1: TStringGrid;
-    StringColumn1: TStringColumn;
-    StringColumn2: TStringColumn;
     Button1: TButton;
     Button2: TButton;
     Edit1: TEdit;
@@ -28,6 +26,7 @@ type
     { Public declarations }
     arr:TArray<Double>;
     elementscol:integer;
+    stringcolumn:TArray<TStringColumn>;
   end;
 
 var
@@ -51,11 +50,12 @@ begin
   sum:=sum+arr[i];
 
   // Сортировка пузырьком
-  for i:=0 to Length(arr)-1 do
+  for i:=1 to Length(arr) do
   begin
     for j:=Length(arr)-1 downto i do
     begin
-      if arr[j-1]>arr[j] then
+      if arr[j-1]>arr[j]
+       then
       begin
         temp:=arr[j-1];
         arr[j-1]:=arr[j];
@@ -65,17 +65,31 @@ begin
   end;
 
   for i:=0 to elementscol-1 do
-  StringGrid1.Cells[1,i]:=arr[i].ToString;
+  begin
+    StringGrid1.Cells[1,i]:=arr[i].ToString;
+  end;
 
   Form1.Caption:=sum.ToString;
+
   ShowMessage('Результат: '+sum.ToString);
 
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);
+var i:integer;
 begin
-  elementscol:=integer.Parse(Edit1.Text);
-  StringGrid1.RowCount:=elementscol;
+
+    elementscol:=integer.Parse(Edit1.Text);
+    StringGrid1.RowCount:=elementscol;
+    SetLength(stringcolumn,3);
+
+  for i:=0 to Length(stringcolumn) do
+  begin
+     stringcolumn[i]:=TStringColumn.Create(StringGrid1);
+     stringcolumn[i].Parent:=StringGrid1;
+     stringcolumn[i].Visible:=true;
+  end;
+
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);

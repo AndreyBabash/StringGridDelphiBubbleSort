@@ -11,8 +11,6 @@ uses
 type
   TForm1 = class(TForm)
     StringGrid1: TStringGrid;
-    StringColumn1: TStringColumn;
-    StringColumn2: TStringColumn;
     Button1: TButton;
     Button2: TButton;
     Edit1: TEdit;
@@ -38,27 +36,55 @@ implementation
 {$R *.fmx}
 
 procedure TForm1.Button1Click(Sender: TObject);
-var i:integer;  sum:double;
+var i,j:integer;  sum:double;  temp:double;
 begin
 
   sum:=0;
   SetLength(arr,elementscol);
 
-for i:=0 to elementscol-1 do
+  for i:=0 to elementscol-1 do
   arr[i]:=Double.Parse(StringGrid1.Cells[0,i]);
 
-for i:=0 to Length(arr) do
+  for i:=0 to Length(arr)-1 do
   sum:=sum+arr[i];
 
+  // Сортировка пузырьком
+  for i:=1 to Length(arr) do
+  begin
+    for j:=Length(arr)-1 downto i do
+    begin
+      if arr[j-1]>arr[j]
+       then
+      begin
+        temp:=arr[j-1];
+        arr[j-1]:=arr[j];
+        arr[j]:=temp;
+      end;
+    end;
+  end;
+
+  for i:=0 to elementscol-1 do
+  begin
+    StringGrid1.Cells[1,i]:=arr[i].ToString;
+  end;
+
   Form1.Caption:=sum.ToString;
+
   ShowMessage('Результат: '+sum.ToString);
 
 end;
 
 procedure TForm1.Button2Click(Sender: TObject);
+var i:integer;
 begin
-  elementscol:=integer.Parse(Edit1.Text);
-  StringGrid1.RowCount:=elementscol;
+    elementscol:=integer.Parse(Edit1.Text);
+    StringGrid1.RowCount:=elementscol;
+
+  for i:=1 to 3 do
+  begin
+
+  end;
+
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);
